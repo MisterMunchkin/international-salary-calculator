@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { ExchangeRateService } from './services/exchange-rate/exchange-rate.service';
+import { Symbols } from './interfaces/symbols';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +9,12 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'international-salary-calculator-angular';
+
+  constructor(private exchangeRate: ExchangeRateService) {
+
+    exchangeRate.getSupportedSymbols()
+    .subscribe((data: Symbols) => {
+      console.log(data);
+    })
+  }
 }
