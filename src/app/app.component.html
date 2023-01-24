@@ -327,19 +327,20 @@
 
   <div class="content" role="main">
     <div class="field">
+      <label for="fromCurrency">From</label>
       <p-dropdown
         [options]="symbols"
-        [(ngModel)]="selectedSymbol"
+        [(ngModel)]="selectedFromCurrency"
+        inputId="fromCurrency"
         optionLabel="description"
         [filter]="true"
         filterBy="description"
-        [showClear]="true"
         placeholder="Select a Currency">
         <ng-template pTemplate="selectedItem">
           <div
             class="country-item country-item-value"
-            *ngIf="selectedSymbol">
-            <div>{{selectedSymbol.description}}</div>
+            *ngIf="selectedFromCurrency">
+            <div>{{selectedFromCurrency.description}}</div>
           </div>
         </ng-template>
         <ng-template
@@ -353,8 +354,51 @@
     </div>
 
     <div class="field">
-      <label for="amount">Amount in</label>
-      <p-inputNumber [(ngModel)]="selectedAmount" inputId="amount" mode="currency" currency="USD"></p-inputNumber>
+      <label for="amount">Amount in {{selectedFromCurrency.code}}</label>
+      <p-inputNumber
+        [(ngModel)]="selectedAmount"
+        inputId="amount"
+        mode="currency"
+        currency={{selectedFromCurrency.code}}
+        locale={{userLanguage}}>
+      </p-inputNumber>
+    </div>
+
+    <div class="field">
+      <label for="salaryRate">Salary Rate</label>
+      <p-dropdown
+        [options]="salaryRates"
+        [(ngModel)]="selectedSalaryRate"
+        inputId="salaryRate"
+        placeholder="Salary Rate">
+      </p-dropdown>
+    </div>
+
+    <div class="field">
+      <label for="toCurrency">To</label>
+      <p-dropdown
+        [options]="symbols"
+        [(ngModel)]="selectedToCurrency"
+        inputId="toCurrency"
+        optionLabel="description"
+        [filter]="true"
+        filterBy="description"
+        placeholder="Select a Currency">
+        <ng-template pTemplate="selectedItem">
+          <div
+            class="country-item country-item-value"
+            *ngIf="selectedToCurrency">
+            <div>{{selectedToCurrency.description}}</div>
+          </div>
+        </ng-template>
+        <ng-template
+          let-symbols
+          pTemplate="item">
+          <div class="country-item">
+            <div>{{symbols.description}}</div>
+          </div>
+        </ng-template>
+      </p-dropdown>
     </div>
 
     <div class="field">
