@@ -66,8 +66,56 @@ export class AppComponent {
         first()
       )
       .subscribe((result: Conversion) => {
-        console.log(result);
+        this.salaryResult(result);
       });
     }
+  }
+
+  salaryResult (conversion: Conversion) {
+    //Convert result amount to hourly based on selectedSalaryRate
+    let hourlyAmount = this.convertToHourly(this.selectedSalaryRate, conversion.result);
+    let allSalaryRates = this.getAllSalaryRatesFromHourly(hourlyAmount);
+
+    console.log(allSalaryRates);
+    console.log(conversion);
+  }
+
+  convertToHourly(salaryRate: string, amount: number) : number {
+    if (salaryRate === "Hourly") {
+      return amount;
+    }
+
+    if (salaryRate === "Daily") {
+      return amount / 8;
+    }
+
+    if (salaryRate === "Weekly") {
+      return amount / 40; //subject to change when amount of hours per week is implemented
+    }
+
+    if (salaryRate === "Monthly") {
+      return ((amount * 12) / 52) / 40; //subject to change when amount of hours per week is implemented
+    }
+
+    //Yearly
+    return (amount / 52) / 40;  //subject to change when amount of hours per week is implemented
+  }
+
+  getAllSalaryRatesFromHourly(hourly: number) {
+    var result = {
+      hourly: hourly,
+      daily: hourly * (40 / 5), //assuming 40 hour work week and 5 days a week
+      weekly: hourly * 40, //assuming 40 hour work week
+      monthly: (hourly * 40 * 52) / 12,
+      yearly: hourly * 40 * 52
+    };
+
+    result.hourly = Math.round((result.hourly + Number.EPSILON) * 100) / 100;
+    result.daily = Math.round((result.daily + Number.EPSILON) * 100) / 100;
+    result.weekly = Math.round((result.weekly + Number.EPSILON) * 100) / 100;
+    result.monthly = Math.round((result.monthly + Number.EPSILON) * 100) / 100;
+    result.yearly = Math.round((result.yearly + Number.EPSILON) * 100) / 100;
+
+    return result;
   }
 }
