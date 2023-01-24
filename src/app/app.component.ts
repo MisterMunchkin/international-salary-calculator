@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { ExchangeRateService } from './services/exchange-rate/exchange-rate.service';
 import { Symbols, Symbol } from './interfaces/symbols';
 import { SalaryRates } from './static-data/salary-rates';
+import { Message } from 'primeng/api/message';
 
 @Component({
   selector: 'app-root',
@@ -26,6 +27,8 @@ export class AppComponent {
   }
 
   selectedAmount: number = 0;
+  invalidAmount: boolean = false;
+
   userLanguage = navigator.language;
 
   constructor(private exchangeRate: ExchangeRateService) {
@@ -42,6 +45,11 @@ export class AppComponent {
 
   convert() {
     //check if amount is greater than 0
+    this.invalidAmount = (this.selectedAmount <= 0);
+
     console.log(this.selectedFromCurrency);
+    console.log(this.selectedAmount);
+    console.log(this.selectedSalaryRate);
+    console.log(this.selectedToCurrency);
   }
 }

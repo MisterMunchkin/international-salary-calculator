@@ -356,12 +356,14 @@
     <div class="field">
       <label for="amount">Amount in {{selectedFromCurrency.code}}</label>
       <p-inputNumber
+        class="mr-2"
         [(ngModel)]="selectedAmount"
         inputId="amount"
         mode="currency"
         currency={{selectedFromCurrency.code}}
         locale={{userLanguage}}>
       </p-inputNumber>
+      <p-message *ngIf="invalidAmount" severity="error" text="Invalid amount"></p-message>
     </div>
 
     <div class="field">
