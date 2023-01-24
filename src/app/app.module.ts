@@ -10,9 +10,13 @@ import { FormsModule } from '@angular/forms';
 
 //primeng
 import {DropdownModule} from 'primeng/dropdown';
+import {ButtonModule} from 'primeng/button';
+import {InputNumberModule} from 'primeng/inputnumber';
 
 const uiModules = [
-  DropdownModule
+  DropdownModule,
+  ButtonModule,
+  InputNumberModule
 ]
 
 @NgModule({
