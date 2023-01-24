@@ -5,6 +5,7 @@ import { SalaryRates } from './static-data/salary-rates';
 import { Message } from 'primeng/api/message';
 import { first } from 'rxjs';
 import { Conversion } from './interfaces/conversion';
+import { SalaryRatesResult } from './interfaces/salary-rates-result';
 
 @Component({
   selector: 'app-root',
@@ -14,10 +15,13 @@ import { Conversion } from './interfaces/conversion';
 export class AppComponent {
   title = 'international-salary-calculator-angular';
 
-  salaryRates: Array<string> = [];
-  selectedSalaryRate: string = 'Yearly';
+  hoursPerWeek: number = 40;
+  daysPerWeek: number = 5;
 
+  salaryRates: Array<string> = [];
   symbols: Array<Symbol> = [];
+
+  selectedSalaryRate: string = 'Yearly';
   selectedFromCurrency: Symbol = {
     description: 'United States Dollar',
     code: 'USD'
@@ -44,18 +48,12 @@ export class AppComponent {
       this.symbols = Object.values(data.symbols);
 
       this.symbols.sort((a, b) => (a.description < b.description) ? -1 : 1);
-      console.log(this.symbols);
     });
   }
 
   convert() {
     //check if amount is greater than 0
     this.invalidAmount = (this.selectedAmount <= 0);
-
-    console.log(this.selectedFromCurrency);
-    console.log(this.selectedAmount);
-    console.log(this.selectedSalaryRate);
-    console.log(this.selectedToCurrency);
 
     if (!this.invalidAmount) {
       let fromCurrCode = this.selectedFromCurrency.code;
@@ -76,6 +74,7 @@ export class AppComponent {
     let hourlyAmount = this.convertToHourly(this.selectedSalaryRate, conversion.result);
     let allSalaryRates = this.getAllSalaryRatesFromHourly(hourlyAmount);
 
+    console.log(hourlyAmount);
     console.log(allSalaryRates);
     console.log(conversion);
   }
@@ -90,25 +89,25 @@ export class AppComponent {
     }
 
     if (salaryRate === "Weekly") {
-      return amount / 40; //subject to change when amount of hours per week is implemented
+      return amount / this.hoursPerWeek; //subject to change when amount of hours per week is implemented
     }
 
     if (salaryRate === "Monthly") {
-      return ((amount * 12) / 52) / 40; //subject to change when amount of hours per week is implemented
+      return ((amount * 12) / 52) / this.hoursPerWeek; //subject to change when amount of hours per week is implemented
     }
 
     //Yearly
-    return (amount / 52) / 40;  //subject to change when amount of hours per week is implemented
+    return (amount / 52) / this.hoursPerWeek;  //subject to change when amount of hours per week is implemented
   }
 
-  getAllSalaryRatesFromHourly(hourly: number) {
+  getAllSalaryRatesFromHourly(hourly: number) : SalaryRatesResult {
     var result = {
       hourly: hourly,
-      daily: hourly * (40 / 5), //assuming 40 hour work week and 5 days a week
-      weekly: hourly * 40, //assuming 40 hour work week
-      monthly: (hourly * 40 * 52) / 12,
-      yearly: hourly * 40 * 52
-    };
+      daily: hourly * (this.hoursPerWeek / this.daysPerWeek), //assuming 40 hour work week and 5 days a week
+      weekly: hourly * this.hoursPerWeek, //assuming 40 hour work week
+      monthly: (hourly * this.hoursPerWeek * 52) / 12,
+      yearly: hourly * this.hoursPerWeek * 52
+    } as SalaryRatesResult;
 
     result.hourly = Math.round((result.hourly + Number.EPSILON) * 100) / 100;
     result.daily = Math.round((result.daily + Number.EPSILON) * 100) / 100;
