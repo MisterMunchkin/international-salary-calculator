@@ -3,6 +3,8 @@ import { ExchangeRateService } from './services/exchange-rate/exchange-rate.serv
 import { Symbols, Symbol } from './interfaces/symbols';
 import { SalaryRates } from './static-data/salary-rates';
 import { Message } from 'primeng/api/message';
+import { first } from 'rxjs';
+import { Conversion } from './interfaces/conversion';
 
 @Component({
   selector: 'app-root',
@@ -35,6 +37,9 @@ export class AppComponent {
     this.salaryRates = SalaryRates.salaryRates;
 
     exchangeRate.getSupportedSymbols()
+    .pipe(
+      first()
+    )
     .subscribe((data: Symbols) => {
       this.symbols = Object.values(data.symbols);
 
@@ -51,5 +56,18 @@ export class AppComponent {
     console.log(this.selectedAmount);
     console.log(this.selectedSalaryRate);
     console.log(this.selectedToCurrency);
+
+    if (!this.invalidAmount) {
+      let fromCurrCode = this.selectedFromCurrency.code;
+      let toCurrCode = this.selectedToCurrency.code;
+
+      this.exchangeRate.convertCurrencies(toCurrCode, fromCurrCode, this.selectedAmount)
+      .pipe(
+        first()
+      )
+      .subscribe((result: Conversion) => {
+        console.log(result);
+      });
+    }
   }
 }
