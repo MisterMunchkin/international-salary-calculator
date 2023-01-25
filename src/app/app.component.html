@@ -112,31 +112,7 @@
   </div>
 </div>
 
-
-<section id="conversion-result" class="p-4 w-full h-screen" [hidden]="conversionResult.salaryRates.hourly === 0">
-  <p-tabView>
-    <p-tabPanel header="Yearly">
-      <h3>Annual Salary in {{conversionResult.selectedCurrency.code}}</h3>
-      <h2>{{currencySymbol(conversionResult.selectedCurrency.code)}} {{conversionResult.salaryRates.yearly.toLocaleString()}}</h2>
-    </p-tabPanel>
-    <p-tabPanel header="Monthly">
-      <h3>Monthly Salary in {{conversionResult.selectedCurrency.code}}</h3>
-      <h2>{{currencySymbol(conversionResult.selectedCurrency.code)}} {{conversionResult.salaryRates.monthly.toLocaleString()}}</h2>
-    </p-tabPanel>
-    <p-tabPanel header="Weekly">
-      <h3>Weekly Salary in {{conversionResult.selectedCurrency.code}}</h3>
-      <h2>{{currencySymbol(conversionResult.selectedCurrency.code)}} {{conversionResult.salaryRates.weekly.toLocaleString()}}</h2>
-    </p-tabPanel>
-    <p-tabPanel header="Daily">
-      <h3>Daily Salary in {{conversionResult.selectedCurrency.code}}</h3>
-      <h2>{{currencySymbol(conversionResult.selectedCurrency.code)}} {{conversionResult.salaryRates.daily.toLocaleString()}}</h2>
-    </p-tabPanel>
-    <p-tabPanel header="Hourly">
-      <h3>Hourly Salary in {{conversionResult.selectedCurrency.code}}</h3>
-      <h2>{{currencySymbol(conversionResult.selectedCurrency.code)}} {{conversionResult.salaryRates.hourly.toLocaleString()}}</h2>
-    </p-tabPanel>
-  </p-tabView>
-</section>
+<app-conversion-result id="conversion-result" [conversionResult]="conversionResult"></app-conversion-result>
 <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
 <!-- * * * * * * * * * * * The content above * * * * * * * * * * * -->
 <!-- * * * * * * * * * * is only a placeholder * * * * * * * * * * -->

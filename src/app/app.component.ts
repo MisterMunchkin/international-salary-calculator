@@ -40,19 +40,7 @@ export class AppComponent {
 
   userLanguage = navigator.language;
 
-  conversionResult: ConversionResult = {
-    salaryRates: {
-      hourly: 0,
-      daily: 0,
-      weekly: 0,
-      monthly: 0,
-      yearly: 0
-    },
-    selectedCurrency: {
-      description: '',
-      code: ''
-    }
-  };
+  conversionResult?: ConversionResult;
   loadingConversion: boolean = false;
 
   constructor(
@@ -164,9 +152,5 @@ export class AppComponent {
     result.yearly = Math.round((result.yearly + Number.EPSILON) * 100) / 100;
 
     return result;
-  }
-
-  currencySymbol(code: string) {
-    return (code) ? getCurrencySymbol(code, "wide") : '';
   }
 }
