@@ -14,14 +14,18 @@ import {ButtonModule} from 'primeng/button';
 import {InputNumberModule} from 'primeng/inputnumber';
 import {MessagesModule} from 'primeng/messages';
 import {MessageModule} from 'primeng/message';
+import {TabViewModule} from 'primeng/tabview';
+import {ToastModule} from 'primeng/toast';
 
 const uiModules = [
   DropdownModule,
   ButtonModule,
   InputNumberModule,
   MessagesModule,
-  MessageModule
-]
+  MessageModule,
+  TabViewModule,
+  ToastModule
+];
 
 @NgModule({
   declarations: [

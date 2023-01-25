@@ -1,0 +1,15 @@
+.l_content {
+  margin-left: 150px;
+  width: fit-content;
+  width: -moz-fit-content;
+  min-height: 400px;
+}
+
+.content__rightLeftSide {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+// input, label {
+//   display: block
+// }

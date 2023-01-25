@@ -2,15 +2,17 @@ import { Component } from '@angular/core';
 import { ExchangeRateService } from './services/exchange-rate/exchange-rate.service';
 import { Symbols, Symbol } from './interfaces/symbols';
 import { SalaryRates } from './static-data/salary-rates';
-import { Message } from 'primeng/api/message';
-import { first } from 'rxjs';
+import { catchError, first, map, Observable, of } from 'rxjs';
 import { Conversion } from './interfaces/conversion';
-import { SalaryRatesResult } from './interfaces/salary-rates-result';
+import { SalaryRatesResult, ConversionResult } from './interfaces/salary-rates-result';
+import {getCurrencySymbol} from '@angular/common';
+import { MessageService } from 'primeng/api';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
+  styleUrls: ['./app.component.scss'],
+  providers: [MessageService]
 })
 export class AppComponent {
   title = 'international-salary-calculator-angular';
@@ -37,7 +39,10 @@ export class AppComponent {
 
   userLanguage = navigator.language;
 
-  constructor(private exchangeRate: ExchangeRateService) {
+  conversionResult: ConversionResult | null = null;
+  loadingConversion: boolean = false;
+
+  constructor(private exchangeRate: ExchangeRateService, private messageService: MessageService) {
     this.salaryRates = SalaryRates.salaryRates;
 
     exchangeRate.getSupportedSymbols()
@@ -52,27 +57,55 @@ export class AppComponent {
   }
 
   convert() {
-    //check if amount is greater than 0
-    this.invalidAmount = (this.selectedAmount <= 0);
-
-    if (!this.invalidAmount) {
-      let fromCurrCode = this.selectedFromCurrency.code;
-      let toCurrCode = this.selectedToCurrency.code;
-
-      this.exchangeRate.convertCurrencies(toCurrCode, fromCurrCode, this.selectedAmount)
-      .pipe(
-        first()
-      )
-      .subscribe((result: Conversion) => {
-        this.salaryResult(result);
-      });
+    if (this.selectedAmount <= 0) {
+      this.invalidAmount = true;
+      return;
     }
+
+    this.invalidAmount = false;
+    this.loadingConversion = true;
+
+    let fromCurrCode = this.selectedFromCurrency.code;
+    let toCurrCode = this.selectedToCurrency.code;
+
+    this.exchangeRate.convertCurrencies(toCurrCode, fromCurrCode, this.selectedAmount)
+    .pipe(
+      catchError(err => {
+        throw err;
+      }),
+      first()
+    )
+    .subscribe({
+      next: result => {
+        this.salaryResult(result);
+        this.loadingConversion = false;
+      },
+      error: err => {
+        console.log(err);
+        this.messageService.add({
+          severity: 'error',
+          summary: 'Oh noes...',
+          detail: 'Something went wrong retrieving the conversion. Don\'t blame yourself you tried your best. Try again in a few seconds.',
+          life: 10000
+        });
+        this.loadingConversion = false;
+      }
+    });
+    // .subscribe((result: Conversion) => {
+    //   this.salaryResult(result);
+    //   this.loadingConversion = false;
+    // });
   }
 
   salaryResult (conversion: Conversion) {
     //Convert result amount to hourly based on selectedSalaryRate
     let hourlyAmount = this.convertToHourly(this.selectedSalaryRate, conversion.result);
     let allSalaryRates = this.getAllSalaryRatesFromHourly(hourlyAmount);
+
+    this.conversionResult = {
+      selectedCurrency: JSON.parse(JSON.stringify(this.selectedToCurrency)),
+      salaryRates: allSalaryRates
+    }
 
     console.log(hourlyAmount);
     console.log(allSalaryRates);
@@ -116,5 +149,9 @@ export class AppComponent {
     result.yearly = Math.round((result.yearly + Number.EPSILON) * 100) / 100;
 
     return result;
+  }
+
+  currencySymbol(code: string) {
+    return getCurrencySymbol(code, "wide");
   }
 }

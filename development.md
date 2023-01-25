@@ -22,3 +22,8 @@ weekly = hourly * number of hours per week
 Monthly = (hourly * number of hours per week * 52) / 12
 
 Annually = hourly * number of hours per week * 52
+
+
+Use this: https://ph.talent.com/salary?job=software+developer
+
+as a guide to how to display resulting salary
