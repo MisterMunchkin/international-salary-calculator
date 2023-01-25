@@ -17,6 +17,7 @@ import {MessageModule} from 'primeng/message';
 import {TabViewModule} from 'primeng/tabview';
 import {ToastModule} from 'primeng/toast';
 import { ConversionResultComponent } from './conversion-result/conversion-result.component';
+import { SalaryConversionFormComponent } from './salary-conversion-form/salary-conversion-form.component';
 
 const uiModules = [
   DropdownModule,
@@ -31,7 +32,8 @@ const uiModules = [
 @NgModule({
   declarations: [
     AppComponent,
-    ConversionResultComponent
+    ConversionResultComponent,
+    SalaryConversionFormComponent
   ],
   imports: [
     BrowserModule,

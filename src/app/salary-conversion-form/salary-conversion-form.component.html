@@ -1,0 +1,86 @@
+<div class="p-4 w-full" role="main">
+  <div class="field">
+    <label class="block text-900 font-medium mb-2" for="fromCurrency">From</label>
+    <p-dropdown
+      styleClass="w-full"
+      [options]="symbols"
+      [(ngModel)]="selectedFromCurrency"
+      inputId="fromCurrency"
+      optionLabel="description"
+      [filter]="true"
+      filterBy="description"
+      placeholder="Select a Currency">
+      <ng-template pTemplate="selectedItem">
+        <div
+          class="country-item country-item-value"
+          *ngIf="selectedFromCurrency">
+          <div>{{selectedFromCurrency.description}}</div>
+        </div>
+      </ng-template>
+      <ng-template
+        let-symbols
+        pTemplate="item">
+        <div class="country-item">
+          <div>{{symbols.description}}</div>
+        </div>
+      </ng-template>
+    </p-dropdown>
+  </div>
+
+  <div class="field">
+    <label class="block text-900 font-medium mb-2" for="amount">Amount in {{selectedFromCurrency.code}}</label>
+    <p-inputNumber
+      class="w-full"
+      styleClass="w-full"
+      [(ngModel)]="selectedAmount"
+      inputId="amount"
+      mode="currency"
+      currency={{selectedFromCurrency.code}}
+      locale={{userLanguage}}>
+    </p-inputNumber>
+    <p-message *ngIf="invalidAmount" class="block" severity="error" text="Enter an amount more than 0 and less than infinity"></p-message>
+  </div>
+
+  <div class="field">
+    <label class="block text-900 font-medium mb-2" for="toCurrency">To</label>
+    <p-dropdown
+      styleClass="w-full"
+      [options]="symbols"
+      [(ngModel)]="selectedToCurrency"
+      inputId="toCurrency"
+      optionLabel="description"
+      [filter]="true"
+      filterBy="description"
+      placeholder="Select a Currency">
+      <ng-template pTemplate="selectedItem">
+        <div
+          class="country-item country-item-value"
+          *ngIf="selectedToCurrency">
+          <div>{{selectedToCurrency.description}}</div>
+        </div>
+      </ng-template>
+      <ng-template
+        let-symbols
+        pTemplate="item">
+        <div class="country-item">
+          <div>{{symbols.description}}</div>
+        </div>
+      </ng-template>
+    </p-dropdown>
+  </div>
+
+  <div class="field">
+    <label class="block text-900 font-medium mb-2" for="salaryRate">Salary Rate</label>
+    <p-dropdown
+      styleClass="w-full"
+      [options]="salaryRates"
+      [(ngModel)]="selectedSalaryRate"
+      inputId="salaryRate"
+      placeholder="Salary Rate">
+    </p-dropdown>
+  </div>
+
+  <div class="field">
+    <p-button styleClass="w-full" label="Convert" (onClick)="convert()" [loading]="loadingConversion" [disabled]="loadingConversion"></p-button>
+  </div>
+</div>
