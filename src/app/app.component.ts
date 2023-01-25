@@ -1,12 +1,13 @@
-import { Component } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { ExchangeRateService } from './services/exchange-rate/exchange-rate.service';
 import { Symbols, Symbol } from './interfaces/symbols';
 import { SalaryRates } from './static-data/salary-rates';
 import { catchError, first, map, Observable, of } from 'rxjs';
 import { Conversion } from './interfaces/conversion';
 import { SalaryRatesResult, ConversionResult } from './interfaces/salary-rates-result';
-import {getCurrencySymbol} from '@angular/common';
+import {getCurrencySymbol, ViewportScroller} from '@angular/common';
 import { MessageService } from 'primeng/api';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -39,10 +40,26 @@ export class AppComponent {
 
   userLanguage = navigator.language;
 
-  conversionResult: ConversionResult | null = null;
+  conversionResult: ConversionResult = {
+    salaryRates: {
+      hourly: 0,
+      daily: 0,
+      weekly: 0,
+      monthly: 0,
+      yearly: 0
+    },
+    selectedCurrency: {
+      description: '',
+      code: ''
+    }
+  };
   loadingConversion: boolean = false;
 
-  constructor(private exchangeRate: ExchangeRateService, private messageService: MessageService) {
+  constructor(
+    private exchangeRate: ExchangeRateService,
+    private messageService: MessageService,
+    private scroller: ViewportScroller,
+    private changeDetector: ChangeDetectorRef) {
     this.salaryRates = SalaryRates.salaryRates;
 
     exchangeRate.getSupportedSymbols()
@@ -78,6 +95,8 @@ export class AppComponent {
     .subscribe({
       next: result => {
         this.salaryResult(result);
+        this.changeDetector.detectChanges();
+        this.scroller.scrollToAnchor("conversion-result");
         this.loadingConversion = false;
       },
       error: err => {
@@ -106,10 +125,6 @@ export class AppComponent {
       selectedCurrency: JSON.parse(JSON.stringify(this.selectedToCurrency)),
       salaryRates: allSalaryRates
     }
-
-    console.log(hourlyAmount);
-    console.log(allSalaryRates);
-    console.log(conversion);
   }
 
   convertToHourly(salaryRate: string, amount: number) : number {
@@ -152,6 +167,6 @@ export class AppComponent {
   }
 
   currencySymbol(code: string) {
-    return getCurrencySymbol(code, "wide");
+    return (code) ? getCurrencySymbol(code, "wide") : '';
   }
 }
