@@ -1,24 +1,22 @@
-<section class="p-4 w-full h-screen" *ngIf="conversionResult">
-  <p-tabView>
-    <p-tabPanel header="Yearly">
-      <h3>Annual Salary in {{conversionResult.selectedCurrency.code}}</h3>
-      <h2>{{currencySymbol(conversionResult.selectedCurrency.code)}} {{conversionResult.salaryRates.yearly.toLocaleString()}}</h2>
-    </p-tabPanel>
-    <p-tabPanel header="Monthly">
-      <h3>Monthly Salary in {{conversionResult.selectedCurrency.code}}</h3>
-      <h2>{{currencySymbol(conversionResult.selectedCurrency.code)}} {{conversionResult.salaryRates.monthly.toLocaleString()}}</h2>
-    </p-tabPanel>
-    <p-tabPanel header="Weekly">
-      <h3>Weekly Salary in {{conversionResult.selectedCurrency.code}}</h3>
-      <h2>{{currencySymbol(conversionResult.selectedCurrency.code)}} {{conversionResult.salaryRates.weekly.toLocaleString()}}</h2>
-    </p-tabPanel>
-    <p-tabPanel header="Daily">
-      <h3>Daily Salary in {{conversionResult.selectedCurrency.code}}</h3>
-      <h2>{{currencySymbol(conversionResult.selectedCurrency.code)}} {{conversionResult.salaryRates.daily.toLocaleString()}}</h2>
-    </p-tabPanel>
-    <p-tabPanel header="Hourly">
-      <h3>Hourly Salary in {{conversionResult.selectedCurrency.code}}</h3>
-      <h2>{{currencySymbol(conversionResult.selectedCurrency.code)}} {{conversionResult.salaryRates.hourly.toLocaleString()}}</h2>
-    </p-tabPanel>
-  </p-tabView>
-</section>
+<div *ngIf="conversionResult">
+  <div class="m-4 flex flex-row surface-card shadow-2 border-round w-max">
+    <span class="m-3 text-700 font-bold">Salary Rates</span>
+    <div class="flex flex-row align-items-center">
+      <button (click)="selectedSalaryRate = 'yearly'" pButton type="button" class="salary-rate-option p-button-rounded p-button-text mr-1">Yearly</button>
+      <button (click)="selectedSalaryRate = 'monthly'" pButton type="button" class="salary-rate-option p-button-rounded p-button-text mr-1">Monthly</button>
+      <button (click)="selectedSalaryRate = 'weekly'" pButton type="button" class="salary-rate-option p-button-rounded p-button-text mr-1">Weekly</button>
+      <button (click)="selectedSalaryRate = 'daily'" pButton type="button" class="salary-rate-option p-button-rounded p-button-text mr-1">Daily</button>
+      <button (click)="selectedSalaryRate = 'hourly'" pButton type="button" class="salary-rate-option p-button-rounded p-button-text mr-1">Hourly</button>
+    </div>
+  </div>
+
+
+  <p-card
+    styleClass="shadow-2 border-round ml-4 mb-4 mr-4"
+    header="{{selectedSalaryRate | titlecase}} Salary in {{conversionResult.selectedCurrency.description}}">
+    <span
+      class="text-4xl text-primary font-bold mb-3">
+      {{currencySymbol(conversionResult.selectedCurrency.code)}} {{getSalaryRateFromKey(selectedSalaryRate).toLocaleString()}}
+    </span>
+  </p-card>
+</div>
