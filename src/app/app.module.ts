@@ -5,6 +5,9 @@ import {HttpClientModule} from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { ConversionResultComponent } from './conversion-result/conversion-result.component';
+import { IphoneComparisonComponent } from './iphone-comparison/iphone-comparison.component';
+import { SalaryConversionFormComponent } from './salary-conversion-form/salary-conversion-form.component';
 
 import { FormsModule } from '@angular/forms';
 
@@ -16,8 +19,6 @@ import {MessagesModule} from 'primeng/messages';
 import {MessageModule} from 'primeng/message';
 import {TabViewModule} from 'primeng/tabview';
 import {ToastModule} from 'primeng/toast';
-import { ConversionResultComponent } from './conversion-result/conversion-result.component';
-import { SalaryConversionFormComponent } from './salary-conversion-form/salary-conversion-form.component';
 import {CardModule} from 'primeng/card';
 
 const uiModules = [
@@ -35,8 +36,9 @@ const uiModules = [
   declarations: [
     AppComponent,
     ConversionResultComponent,
-    SalaryConversionFormComponent
-  ],
+    SalaryConversionFormComponent,
+      IphoneComparisonComponent
+   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
