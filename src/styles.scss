@@ -15,3 +15,11 @@ body{
 html {
   scroll-behavior: smooth;
 }
+
+.color-primary-gradient-dark {
+  background: hsla(243, 75%, 59%, 1);
+  background: linear-gradient(90deg, hsla(243, 75%, 59%, 1) 0%, hsla(243, 100%, 21%, 1) 100%);
+  background: -moz-linear-gradient(90deg, hsla(243, 75%, 59%, 1) 0%, hsla(243, 100%, 21%, 1) 100%);
+  background: -webkit-linear-gradient(90deg, hsla(243, 75%, 59%, 1) 0%, hsla(243, 100%, 21%, 1) 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr="#4F46E5", endColorstr="#06006A", GradientType=1);
+}

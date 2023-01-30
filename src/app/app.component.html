@@ -9,8 +9,8 @@
 
 <p-toast></p-toast>
 
-<div class="grid grid-nogutter surface-section text-800">
-  <div class="col-12 md:col-6 p-6 text-center md:text-left flex align-items-center ">
+<div class="grid grid-nogutter surface-section text-800 align-items-center hero-background-test">
+  <div class="col-12 md:col-6 p-6 text-center md:text-left flex align-items-center">
       <section>
           <span class="text-6xl font-bold mb-1">Yet Another</span>
           <span class="text-6xl text-primary font-bold mb-3"> Salary </span>
@@ -23,12 +23,15 @@
       </section>
   </div>
   <div class="col-12 md:col-6 overflow-hidden">
-      <div class="md:ml-auto block md:h-full hero-background" style="clip-path: polygon(8% 0, 100% 0%, 100% 100%, 0 100%)">
-      </div>
+    <img src="/assets/images/hero-image.png" alt="Image" class="md:ml-auto block">
+    <!-- <div class="md:ml-auto block md:h-full hero-background" style="clip-path:polygon(8% 0, 100% 0%, 100% 100%, 0 100%)"></div> -->
   </div>
 </div>
 
-<app-conversion-result id="conversion-result" [conversionResult]="conversionResult"></app-conversion-result>
+<div *ngIf="conversionResult" class="grid align-items-end">
+    <app-conversion-result class="col" id="conversion-result" [conversionResult]="conversionResult"></app-conversion-result>
+    <app-iphone-comparison class="col"></app-iphone-comparison>
+</div>
 <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
 <!-- * * * * * * * * * * * The content above * * * * * * * * * * * -->
 <!-- * * * * * * * * * * is only a placeholder * * * * * * * * * * -->

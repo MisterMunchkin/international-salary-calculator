@@ -27,3 +27,10 @@ Annually = hourly * number of hours per week * 52
 Use this: https://ph.talent.com/salary?job=software+developer
 
 as a guide to how to display resulting salary
+
+Image by <a href="https://www.freepik.com/free-vector/hand-drawn-stock-market-concept_19962870.htm#query=salary%20rate%20animal&position=2&from_view=search&track=ais">Freepik</a>
+- attribute for hero image
+
+
+Image by <a href="https://www.freepik.com/free-vector/hand-with-wallet-with-paper-banknotes-money-cash_35779725.htm#query=salary&position=14&from_view=keyword">Image by upklyak</a> on Freepik
+- attribute for hero image 2

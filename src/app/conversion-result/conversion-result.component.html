@@ -1,22 +1,20 @@
-<div *ngIf="conversionResult">
-  <div class="m-4 flex flex-row surface-card shadow-2 border-round w-max">
-    <span class="m-3 text-700 font-bold">Salary Rates</span>
-    <div class="flex flex-row align-items-center">
-      <button (click)="selectedSalaryRate = 'yearly'" pButton type="button" class="salary-rate-option p-button-rounded p-button-text mr-1">Yearly</button>
-      <button (click)="selectedSalaryRate = 'monthly'" pButton type="button" class="salary-rate-option p-button-rounded p-button-text mr-1">Monthly</button>
-      <button (click)="selectedSalaryRate = 'weekly'" pButton type="button" class="salary-rate-option p-button-rounded p-button-text mr-1">Weekly</button>
-      <button (click)="selectedSalaryRate = 'daily'" pButton type="button" class="salary-rate-option p-button-rounded p-button-text mr-1">Daily</button>
-      <button (click)="selectedSalaryRate = 'hourly'" pButton type="button" class="salary-rate-option p-button-rounded p-button-text mr-1">Hourly</button>
-    </div>
+<div class="m-4 flex flex-row surface-card shadow-2 border-round w-max">
+  <span class="m-3 text-700 font-bold">Salary Rates</span>
+  <div class="flex flex-row align-items-center">
+    <button (click)="selectedSalaryRate = 'yearly'" pButton type="button" class="salary-rate-option p-button-rounded p-button-text mr-1">Yearly</button>
+    <button (click)="selectedSalaryRate = 'monthly'" pButton type="button" class="salary-rate-option p-button-rounded p-button-text mr-1">Monthly</button>
+    <button (click)="selectedSalaryRate = 'weekly'" pButton type="button" class="salary-rate-option p-button-rounded p-button-text mr-1">Weekly</button>
+    <button (click)="selectedSalaryRate = 'daily'" pButton type="button" class="salary-rate-option p-button-rounded p-button-text mr-1">Daily</button>
+    <button (click)="selectedSalaryRate = 'hourly'" pButton type="button" class="salary-rate-option p-button-rounded p-button-text mr-1">Hourly</button>
   </div>
-
-
-  <p-card
-    styleClass="shadow-2 border-round ml-4 mb-4 mr-4 w-6"
-    header="{{selectedSalaryRate | titlecase}} Salary in {{conversionResult.selectedCurrency.description}}">
-    <span
-      class="text-4xl text-primary font-bold mb-3">
-      {{currencySymbol(conversionResult.selectedCurrency.code)}} {{getSalaryRateFromKey(selectedSalaryRate).toLocaleString()}}
-    </span>
-  </p-card>
 </div>
+
+<p-card
+  styleClass="shadow-2 border-round ml-4 mb-4 mr-4 text-center"
+  header="{{selectedSalaryRate | titlecase}} Salary in {{conversionResult?.selectedCurrency?.description}}"
+  subheader="This assumes that you work 40 hours per week for 52 weeks in a year 💰">
+  <span
+    class="text-5xl text-primary font-bold mb-3">
+    {{currencySymbol(conversionResult?.selectedCurrency?.code)}} {{getSalaryRateFromKey(selectedSalaryRate).toLocaleString()}}
+  </span>
+</p-card>

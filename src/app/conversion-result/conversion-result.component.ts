@@ -2,7 +2,7 @@ import { getCurrencySymbol } from '@angular/common';
 import { Component, ElementRef, Input, ViewChild } from '@angular/core';
 import { Button } from 'primeng/button';
 import { ConversionResult } from '../interfaces/salary-rates-result';
-import { SalaryRates } from '../static-data/salary-rates';
+import { SalaryRatesData } from '../static-data/salary-rates-data';
 
 @Component({
   selector: 'app-conversion-result',
@@ -14,11 +14,11 @@ export class ConversionResultComponent {
 
   selectedSalaryRate: string = 'yearly';
 
-  currencySymbol(code: string) {
+  currencySymbol(code: string | undefined) {
     return (code) ? getCurrencySymbol(code, "wide") : '';
   }
 
   getSalaryRateFromKey(salaryRateKey: string) : number {
-    return (this.conversionResult) ? this.conversionResult.salaryRates[salaryRateKey as keyof SalaryRates] : 0;
+    return (this.conversionResult) ? this.conversionResult.salaryRates[salaryRateKey as keyof SalaryRatesData] : 0;
   }
 }

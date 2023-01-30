@@ -1,12 +1,11 @@
-import { ViewportScroller } from '@angular/common';
-import { ChangeDetectorRef, Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { MessageService } from 'primeng/api';
 import { catchError, first } from 'rxjs';
 import { Conversion } from '../interfaces/conversion';
 import { ConversionResult, SalaryRatesResult } from '../interfaces/salary-rates-result';
 import { Symbols, Symbol } from '../interfaces/symbols';
 import { ExchangeRateService } from '../services/exchange-rate/exchange-rate.service';
-import { SalaryRates } from '../static-data/salary-rates';
+import { SalaryRatesData } from '../static-data/salary-rates-data';
 
 @Component({
   selector: 'app-salary-conversion-form',
@@ -43,7 +42,7 @@ export class SalaryConversionFormComponent {
     private exchangeRateService: ExchangeRateService,
     private messageService: MessageService,
   ) {
-    this.salaryRates = SalaryRates.salaryRates;
+    this.salaryRates = SalaryRatesData.salaryRates;
 
     this.exchangeRateService.getSupportedSymbols()
     .pipe(

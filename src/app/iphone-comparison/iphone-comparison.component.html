@@ -1,3 +1,27 @@
-<p>
-  iphone-comparison works!
-</p>
+<p-card
+  styleClass="shadow-2 border-round m-4 text-center"
+  header="iPhone 12 Pro 128gb Price Comparison (2020)"
+  subheader="How much does an 📱 iPhone 12 Pro 128gb cost in USD 💸?">
+  <div class="flex flex-row justify-content-around">
+    <div class="mr-4 flex-grow-1">
+      <p-dropdown class="block mb-1" styleClass="w-15rem" [options]="countries" [(ngModel)]="aCountryComparison.country" (onChange)="changeSelection()"></p-dropdown>
+      <!-- <span class="block text-xl mb-1">{{aCountryComparison.country}}</span> -->
+      <span
+        *ngIf="aCountryComparison.iphonePrice && aCountryComparison.iphonePrice > 0"
+        class="text-5xl font-bold text-primary">
+        {{usdCurrencySymbol()}}{{aCountryComparison.iphonePrice.toLocaleString()}}
+      </span>
+    </div>
+
+    <div class="flex-grow-1">
+      <p-dropdown class="block mb-1" styleClass="w-15rem" [options]="countries" [(ngModel)]="bCountryComparison.country" (onChange)="changeSelection()"></p-dropdown>
+      <!-- <span class="block text-xl mb-1">{{bCountryComparison.country}}</span> -->
+
+      <span
+        *ngIf="bCountryComparison.iphonePrice && bCountryComparison.iphonePrice > 0"
+        class="text-5xl font-bold text-primary">
+        {{usdCurrencySymbol()}}{{bCountryComparison.iphonePrice.toLocaleString()}}
+      </span>
+    </div>
+  </div>
+</p-card>

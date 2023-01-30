@@ -17,9 +17,9 @@ import {ButtonModule} from 'primeng/button';
 import {InputNumberModule} from 'primeng/inputnumber';
 import {MessagesModule} from 'primeng/messages';
 import {MessageModule} from 'primeng/message';
-import {TabViewModule} from 'primeng/tabview';
 import {ToastModule} from 'primeng/toast';
 import {CardModule} from 'primeng/card';
+import {ChartModule} from 'primeng/chart';
 
 const uiModules = [
   DropdownModule,
@@ -27,9 +27,9 @@ const uiModules = [
   InputNumberModule,
   MessagesModule,
   MessageModule,
-  TabViewModule,
   ToastModule,
-  CardModule
+  CardModule,
+  ChartModule
 ];
 
 @NgModule({
@@ -37,7 +37,7 @@ const uiModules = [
     AppComponent,
     ConversionResultComponent,
     SalaryConversionFormComponent,
-      IphoneComparisonComponent
+    IphoneComparisonComponent
    ],
   imports: [
     BrowserModule,
