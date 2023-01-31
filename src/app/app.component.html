@@ -9,22 +9,21 @@
 
 <p-toast></p-toast>
 
-<div class="grid grid-nogutter surface-section text-800 align-items-center hero-background-test">
+<div class="grid grid-nogutter surface-section text-800 align-items-center hero-background-full-gradient">
   <div class="col-12 md:col-6 p-6 text-center md:text-left flex align-items-center">
       <section>
-          <span class="text-6xl font-bold mb-1">Yet Another</span>
+          <span class="text-6xl font-bold mb-1 text-white">Yet Another</span>
           <span class="text-6xl text-primary font-bold mb-3"> Salary </span>
-          <span class="text-6xl font-bold mb-1">Converter</span>
-          <p class="mt-0 mb-4 text-700 line-height-3">
+          <span class="text-6xl font-bold mb-1 text-white">Converter</span>
+          <span class="block text-xl mt-2 mb-4 text-white">
             Got a remote job offer with a currency and salary rate you're unfamiliar with?
-          </p>
+          </span>
 
           <app-salary-conversion-form (newConversionResultEvent)="newConversionResultEvent($event)"></app-salary-conversion-form>
       </section>
   </div>
   <div class="col-12 md:col-6 overflow-hidden">
-    <img src="/assets/images/hero-image.png" alt="Image" class="md:ml-auto block">
-    <!-- <div class="md:ml-auto block md:h-full hero-background" style="clip-path:polygon(8% 0, 100% 0%, 100% 100%, 0 100%)"></div> -->
+    <img src="/assets/images/hero-image.png" alt="Image" class="md:ml-auto block" style="z-index: 1">
   </div>
 </div>
 

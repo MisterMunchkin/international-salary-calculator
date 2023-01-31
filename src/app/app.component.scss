@@ -10,27 +10,10 @@
   flex-wrap: wrap;
 }
 
-// input, label {
-//   display: block
-// }
-
-.hero-background {
+.hero-background-full-gradient {
   background: rgb(79,70,229);
-  background: -moz-linear-gradient(0deg, rgba(79,70,229,1) 0%, rgba(0,0,0,0) 35%);
-  background: -webkit-linear-gradient(0deg, rgba(79,70,229,1) 0%, rgba(0,0,0,0) 35%);
-  background: linear-gradient(0deg, rgba(79,70,229,1) 0%, rgba(0,0,0,0) 35%);
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#4f46e5",endColorstr="#000000",GradientType=1);
-}
-
-.hero-background-violet-gradient {
-  background: rgb(79,70,229);
-  background: -moz-linear-gradient(180deg, rgba(79,70,229,1) 0%, rgba(0,0,0,0) 35%);
-  background: -webkit-linear-gradient(180deg, rgba(79,70,229,1) 0%, rgba(0,0,0,0) 35%);
-  background: linear-gradient(180deg, rgba(79,70,229,1) 0%, rgba(0,0,0,0) 35%);
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#4f46e5",endColorstr="#000000",GradientType=1);
-}
-
-.hero-background-test {
-  background-image: linear-gradient(200deg, #4f46e5 0%, #ff3c88 20%, rgba(0,0,0,0) 30%);
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#4f46e5",endColorstr="#000000",GradientType=1);
+  background: -moz-linear-gradient(223deg, rgba(79,70,229,1) 10%, rgba(0,152,255,0.8561799719887955) 50%, rgba(0,208,252,0.7077205882352942) 100%);
+  background: -webkit-linear-gradient(223deg, rgba(79,70,229,1) 10%, rgba(0,152,255,0.8561799719887955) 50%, rgba(0,208,252,0.7077205882352942) 100%);
+  background: linear-gradient(223deg, rgba(79,70,229,1) 10%, rgba(0,152,255,0.8561799719887955) 50%, rgba(0,208,252,0.7077205882352942) 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#4f46e5",endColorstr="#00d0fc",GradientType=1);
 }
