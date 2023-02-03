@@ -6,7 +6,7 @@ import { getCurrencySymbol } from '@angular/common';
 @Component({
   selector: 'app-iphone-comparison',
   templateUrl: './iphone-comparison.component.html',
-  styleUrls: ['./iphone-comparison.component.css']
+  styleUrls: ['./iphone-comparison.component.scss']
 })
 //This should just be an independent component where the user can select countries from our data set to compare.
 export class IphoneComparisonComponent implements OnInit {
