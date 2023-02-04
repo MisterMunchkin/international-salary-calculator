@@ -19,7 +19,6 @@ import {MessagesModule} from 'primeng/messages';
 import {MessageModule} from 'primeng/message';
 import {ToastModule} from 'primeng/toast';
 import {CardModule} from 'primeng/card';
-import {ChartModule} from 'primeng/chart';
 import { FooterComponent } from './footer/footer.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
@@ -31,7 +30,6 @@ const uiModules = [
   MessageModule,
   ToastModule,
   CardModule,
-  ChartModule,
   FontAwesomeModule
 ];
 
