@@ -2,6 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { iPhonePricesAvgRentData } from '../static-data/iphone-prices-avg-rent-data';
 import { iPhonePricesAvgRent } from '../interfaces/iphone-prices-avg-rent';
 import { getCurrencySymbol } from '@angular/common';
+import Fuse from 'fuse.js';
 
 @Component({
   selector: 'app-iphone-comparison',
@@ -10,12 +11,17 @@ import { getCurrencySymbol } from '@angular/common';
 })
 //This should just be an independent component where the user can select countries from our data set to compare.
 export class IphoneComparisonComponent implements OnInit {
-  aCountryComparison: iPhonePricesAvgRent = {
-    country: 'United States of America'
+  @Input() toCountryName?: string;
+  @Input() fromCountryName?: string;
+
+  iPhonePricesAvgRent: Array<iPhonePricesAvgRent> = [];
+
+  toCountryComparison: iPhonePricesAvgRent = {
+    country: ''
   };
 
-  bCountryComparison: iPhonePricesAvgRent = {
-    country: 'Philippines'
+  fromCountryComparison: iPhonePricesAvgRent = {
+    country: ''
   };
 
   countries: Array<string>;
@@ -27,25 +33,40 @@ export class IphoneComparisonComponent implements OnInit {
   aNoDataForComparison: boolean = false;
   bNoDataForComparison: boolean = false;
 
-  constructor() {
-    var iPhonePricesAvgRent: Array<iPhonePricesAvgRent> = JSON.parse(JSON.stringify(iPhonePricesAvgRentData.iphonePricesAvgRent));
+  fuse: Fuse<string>;
 
-    this.countries = iPhonePricesAvgRent.map(e => e.country);
+  constructor() {
+    this.iPhonePricesAvgRent = JSON.parse(JSON.stringify(iPhonePricesAvgRentData.iphonePricesAvgRent));
+
+    this.countries = this.iPhonePricesAvgRent.map(e => e.country);
 
     this.iPhonePriceByCountryHash = Object.fromEntries(
-      iPhonePricesAvgRent.map(e => [e.country, e.iphonePrice])
+      this.iPhonePricesAvgRent.map(e => [e.country, e.iphonePrice])
     );
 
-    this.changeSelection();
+    this.fuse = new Fuse(this.countries);
   }
 
   ngOnInit() {
+    //fuzzy search for country name in data set based on currency description
+    if (this.toCountryName) {
+      const toFuseResults = this.fuse.search(this.toCountryName);
+      const toCountryResult = toFuseResults[0]?.item ?? '';
+      this.toCountryComparison.country =  toCountryResult;
+      this.toCountryComparison.iphonePrice = this.iPhonePriceByCountryHash[toCountryResult];
+    }
 
+    if (this.fromCountryName) {
+      const fromFuseResults = this.fuse.search(this.fromCountryName);
+      const fromCountryResult = fromFuseResults[0]?.item ?? '';
+      this.fromCountryComparison.country = fromCountryResult;
+      this.fromCountryComparison.iphonePrice = this.iPhonePriceByCountryHash[fromCountryResult];
+    }
   }
 
   changeSelection() {
-    this.aCountryComparison.iphonePrice = this.iPhonePriceByCountryHash[this.aCountryComparison.country];
-    this.bCountryComparison.iphonePrice = this.iPhonePriceByCountryHash[this.bCountryComparison.country];
+    this.toCountryComparison.iphonePrice = this.iPhonePriceByCountryHash[this.toCountryComparison.country];
+    this.fromCountryComparison.iphonePrice = this.iPhonePriceByCountryHash[this.fromCountryComparison.country];
   }
 
   usdCurrencySymbol() {

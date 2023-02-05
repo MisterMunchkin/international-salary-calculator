@@ -29,7 +29,12 @@
 
 <div *ngIf="conversionResult" class="grid align-items-end">
     <app-conversion-result class="col" id="conversion-result" [conversionResult]="conversionResult"></app-conversion-result>
-    <app-iphone-comparison class="col"></app-iphone-comparison>
+
+    <app-iphone-comparison
+    class="col"
+    [toCountryName]="conversionResult.toCurrency.description"
+    [fromCountryName]="conversionResult.fromCurrency.description">
+    </app-iphone-comparison>
 </div>
 
 <app-footer></app-footer>

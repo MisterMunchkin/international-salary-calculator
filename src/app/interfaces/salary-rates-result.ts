@@ -2,7 +2,8 @@ import {Symbol} from './symbols';
 
 export interface ConversionResult {
   salaryRates: SalaryRatesResult,
-  selectedCurrency: Symbol
+  toCurrency: Symbol,
+  fromCurrency: Symbol
 };
 
 export interface SalaryRatesResult {

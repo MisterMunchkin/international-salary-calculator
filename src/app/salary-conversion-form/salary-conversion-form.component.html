@@ -9,7 +9,8 @@
       optionLabel="description"
       [filter]="true"
       filterBy="description"
-      placeholder="Select a Currency">
+      placeholder="Select a Currency"
+      [dropdownIcon]="loadingSymbols ? 'pi pi-spinner pi-spin' : 'pi pi-chevron-down'">
       <ng-template pTemplate="selectedItem">
         <div
           class="country-item country-item-value"
@@ -51,7 +52,8 @@
       optionLabel="description"
       [filter]="true"
       filterBy="description"
-      placeholder="Select a Currency">
+      placeholder="Select a Currency"
+      [dropdownIcon]="loadingSymbols ? 'pi pi-spinner pi-spin' : 'pi pi-chevron-down'">
       <ng-template pTemplate="selectedItem">
         <div
           class="country-item country-item-value"
