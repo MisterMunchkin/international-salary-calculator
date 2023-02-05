@@ -11,10 +11,10 @@
 
 <p-card
   styleClass="shadow-2 border-round ml-4 mb-4 mr-4 text-center"
-  header="{{selectedSalaryRate | titlecase}} Salary in {{conversionResult?.selectedCurrency?.description}}"
+  header="{{selectedSalaryRate | titlecase}} Salary in {{conversionResult?.toCurrency?.description}}"
   subheader="This assumes that you work 40 hours per week for 52 weeks in a year 💰">
   <span
     class="text-5xl text-primary font-bold mb-3">
-    {{currencySymbol(conversionResult?.selectedCurrency?.code)}} {{getSalaryRateFromKey(selectedSalaryRate).toLocaleString()}}
+    {{currencySymbol(conversionResult?.toCurrency?.code)}} {{getSalaryRateFromKey(selectedSalaryRate).toLocaleString()}}
   </span>
 </p-card>

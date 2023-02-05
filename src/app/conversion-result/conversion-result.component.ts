@@ -1,6 +1,5 @@
 import { getCurrencySymbol } from '@angular/common';
-import { Component, ElementRef, Input, ViewChild } from '@angular/core';
-import { Button } from 'primeng/button';
+import { Component, Input } from '@angular/core';
 import { ConversionResult } from '../interfaces/salary-rates-result';
 import { SalaryRatesData } from '../static-data/salary-rates-data';
 

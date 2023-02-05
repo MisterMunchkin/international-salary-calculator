@@ -30,6 +30,8 @@ export class SalaryConversionFormComponent {
     code: 'EUR'
   }
 
+  loadingSymbols: boolean = false;
+
   selectedAmount: number = 0;
   invalidAmount: boolean = false;
 
@@ -43,6 +45,7 @@ export class SalaryConversionFormComponent {
     private messageService: MessageService,
   ) {
     this.salaryRates = SalaryRatesData.salaryRates;
+    this.loadingSymbols = true;
 
     this.exchangeRateService.getSupportedSymbols()
     .pipe(
@@ -52,6 +55,7 @@ export class SalaryConversionFormComponent {
       this.symbols = Object.values(data.symbols);
 
       this.symbols.sort((a, b) => (a.description < b.description) ? -1 : 1);
+      this.loadingSymbols = false;
     });
   }
 
@@ -99,7 +103,8 @@ export class SalaryConversionFormComponent {
     let allSalaryRates = this.getAllSalaryRatesFromHourly(hourlyAmount);
 
     this.conversionResult = {
-      selectedCurrency: JSON.parse(JSON.stringify(this.selectedToCurrency)),
+      toCurrency: JSON.parse(JSON.stringify(this.selectedToCurrency)),
+      fromCurrency: JSON.parse(JSON.stringify(this.selectedFromCurrency)),
       salaryRates: allSalaryRates
     }
 
