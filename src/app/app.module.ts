@@ -20,7 +20,6 @@ import {MessageModule} from 'primeng/message';
 import {ToastModule} from 'primeng/toast';
 import {CardModule} from 'primeng/card';
 import { FooterComponent } from './footer/footer.component';
-import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 const uiModules = [
   DropdownModule,
@@ -30,7 +29,6 @@ const uiModules = [
   MessageModule,
   ToastModule,
   CardModule,
-  FontAwesomeModule
 ];
 
 @NgModule({
@@ -39,7 +37,7 @@ const uiModules = [
     ConversionResultComponent,
     SalaryConversionFormComponent,
     IphoneComparisonComponent,
-      FooterComponent
+    FooterComponent
    ],
   imports: [
     BrowserModule,
@@ -47,8 +45,7 @@ const uiModules = [
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
-    uiModules,
-    FontAwesomeModule
+    uiModules
   ],
   providers: [],
   bootstrap: [AppComponent]
