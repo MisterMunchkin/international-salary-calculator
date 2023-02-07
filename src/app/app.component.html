@@ -23,7 +23,11 @@
       </section>
   </div>
   <div class="col-12 md:col-6 overflow-hidden">
-    <img src="/assets/images/hero-image.png" alt="Image" class="ml-auto block" style="z-index: 1">
+    <picture class="block" style="z-index: 1; margin-left: 16vw;">
+      <source srcset="/assets/images/webp/hero-image.webp" type="image/webp">
+      <source srcset="/assets/images/hero-image.png" type="image/png">
+      <img src="/assets/images/hero-image.png" alt="Hero Image">
+    </picture>
   </div>
 </div>
 
