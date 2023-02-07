@@ -10,23 +10,25 @@
 <p-toast></p-toast>
 
 <div class="grid grid-nogutter surface-section text-800 align-items-center hero-background-full-gradient h-screen">
-  <div class="col-12 md:col-6 p-6 text-center md:text-left flex align-items-center">
+  <div class="col-12 md:col-6 p-6 flex align-items-center">
       <section>
+        <div class="text-center md:text-left">
           <span class="text-6xl font-bold mb-1 text-white">Yet Another</span>
           <span class="text-6xl text-primary font-bold mb-3"> Salary </span>
           <span class="text-6xl font-bold mb-1 text-white">Converter</span>
           <span class="block text-xl mt-2 mb-4 text-white">
             Got a remote job offer with a currency and salary rate you're unfamiliar with?
           </span>
+        </div>
 
-          <app-salary-conversion-form (newConversionResultEvent)="newConversionResultEvent($event)"></app-salary-conversion-form>
+        <app-salary-conversion-form (newConversionResultEvent)="newConversionResultEvent($event)"></app-salary-conversion-form>
       </section>
   </div>
   <div class="col-12 md:col-6 overflow-hidden">
-    <picture class="block" style="z-index: 1; margin-left: 16vw;">
+    <picture>
       <source srcset="/assets/images/webp/hero-image.webp" type="image/webp">
       <source srcset="/assets/images/hero-image.png" type="image/png">
-      <img src="/assets/images/hero-image.png" alt="Hero Image">
+      <img src="/assets/images/hero-image.png" alt="Hero Image" class="block ml-auto" style="z-index:1;">
     </picture>
   </div>
 </div>
