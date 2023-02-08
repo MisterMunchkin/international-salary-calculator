@@ -5,8 +5,10 @@
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
+    "build:stats": "ng build --stats-json",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test"
+    "test": "ng test",
+    "analyze": "webpack-bundle-analyzer dist/international-salary-calculator-angular/stats.json"
   },
   "private": true,
   "dependencies": {
@@ -37,6 +39,8 @@
     "karma-coverage": "~2.2.0",
     "karma-jasmine": "~5.1.0",
     "karma-jasmine-html-reporter": "~2.0.0",
-    "typescript": "4.8"
+    "typescript": "4.8",
+    "webpack": "^5.75.0",
+    "webpack-bundle-analyzer": "^4.7.0"
   }
 }
