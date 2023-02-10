@@ -8,6 +8,7 @@ import { AppComponent } from './app.component';
 import { ConversionResultComponent } from './conversion-result/conversion-result.component';
 import { IphoneComparisonComponent } from './iphone-comparison/iphone-comparison.component';
 import { SalaryConversionFormComponent } from './salary-conversion-form/salary-conversion-form.component';
+import { FooterComponent } from './footer/footer.component';
 
 import { FormsModule } from '@angular/forms';
 
@@ -18,7 +19,6 @@ import {InputNumberModule} from 'primeng/inputnumber';
 import {MessageModule} from 'primeng/message';
 import {ToastModule} from 'primeng/toast';
 import {CardModule} from 'primeng/card';
-import { FooterComponent } from './footer/footer.component';
 
 const uiModules = [
   DropdownModule,
