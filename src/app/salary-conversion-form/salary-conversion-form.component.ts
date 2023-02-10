@@ -32,7 +32,7 @@ export class SalaryConversionFormComponent {
 
   loadingSymbols: boolean = false;
 
-  selectedAmount: number = 0;
+  selectedAmount: number | null = null;
   invalidAmount: boolean = false;
 
   userLanguage = navigator.language;
@@ -60,7 +60,7 @@ export class SalaryConversionFormComponent {
   }
 
   convert() {
-    if (this.selectedAmount <= 0) {
+    if (this.selectedAmount == null || this.selectedAmount <= 0) {
       this.invalidAmount = true;
       return;
     }
