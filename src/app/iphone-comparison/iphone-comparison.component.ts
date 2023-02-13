@@ -19,9 +19,6 @@ export class IphoneComparisonComponent {
 
     const countryName = this.searchCountryByFuse(value);
     this.setToComparison(countryName);
-
-    console.log(value);
-    console.log(this.toCountryComparison);
   }
   get toCurrencyName() : string {
     return this._toCurrencyName ?? '';
@@ -35,9 +32,6 @@ export class IphoneComparisonComponent {
 
     const countryName = this.searchCountryByFuse(value);
     this.setFromComparison(countryName);
-
-    console.log(value);
-    console.log(this.fromCountryComparison);
   }
   get fromCurrencyName() : string {
     return this._fromCurrencyName ?? '';
