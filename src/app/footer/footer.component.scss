@@ -1,7 +1,11 @@
 .footer-dark {
-  padding:50px 0;
+  padding:50px 0 30px 0;
   color:#f0f9ff;
-  background-color:#282d32;
+  background: #0A0836;
+  // background: -moz-linear-gradient(43deg, rgba(0,152,255,1) 0%, rgba(40,45,50,0.9528405112044818) 32%);
+  // background: -webkit-linear-gradient(43deg, rgba(0,152,255,1) 0%, rgba(40,45,50,0.9528405112044818) 32%);
+  // background: linear-gradient(43deg, rgba(0,152,255,1) 0%, rgba(40,45,50,0.9528405112044818) 32%);
+  // filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#0098ff",endColorstr="#282d32",GradientType=1);
 }
 
 .footer-dark h3 {
