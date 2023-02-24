@@ -3,23 +3,6 @@
   header="iPhone 12 Pro 128gb Price Comparison (2020)"
   subheader="How much does an 📱 iPhone 12 Pro 128gb in different countries cost 💸?">
   <div class="flex flex-row justify-content-around">
-    <div class="mr-4 flex-grow-1">
-      <p-dropdown class="block mb-1" styleClass="w-15rem" [options]="countries" [(ngModel)]="toCountryComparison.country" (onChange)="changeSelection()"></p-dropdown>
-      <!-- <span class="block text-xl mb-1">{{aCountryComparison.country}}</span> -->
-      <span
-        *ngIf="toCountryComparison.iphonePrice"
-        class="text-5xl font-bold text-primary">
-        {{usdCurrencySymbol()}}{{toCountryComparison.iphonePrice.toLocaleString()}}
-      </span>
-
-      <span
-        *ngIf="!toCountryComparison.iphonePrice"
-        class="text-xl font-bold">
-        Couldn't find iPhone prices for <br> {{this.toCurrencyName}} 😅
-      </span>
-    </div>
-    <div class="vertical-divider"></div>
-
     <div class="flex-grow-1">
       <p-dropdown class="block mb-1" styleClass="w-15rem" [options]="countries" [(ngModel)]="fromCountryComparison.country" (onChange)="changeSelection()"></p-dropdown>
       <!-- <span class="block text-xl mb-1">{{bCountryComparison.country}}</span> -->
@@ -34,6 +17,22 @@
         *ngIf="!fromCountryComparison.iphonePrice"
         class="text-xl font-bold">
         Couldn't find iPhone prices for <br> {{this.fromCurrencyName}} 😅
+      </span>
+    </div>
+    <div class="vertical-divider"></div>
+    <div class="mr-4 flex-grow-1">
+      <p-dropdown class="block mb-1" styleClass="w-15rem" [options]="countries" [(ngModel)]="toCountryComparison.country" (onChange)="changeSelection()"></p-dropdown>
+      <!-- <span class="block text-xl mb-1">{{aCountryComparison.country}}</span> -->
+      <span
+        *ngIf="toCountryComparison.iphonePrice"
+        class="text-5xl font-bold text-primary">
+        {{usdCurrencySymbol()}}{{toCountryComparison.iphonePrice.toLocaleString()}}
+      </span>
+
+      <span
+        *ngIf="!toCountryComparison.iphonePrice"
+        class="text-xl font-bold">
+        Couldn't find iPhone prices for <br> {{this.toCurrencyName}} 😅
       </span>
     </div>
   </div>
