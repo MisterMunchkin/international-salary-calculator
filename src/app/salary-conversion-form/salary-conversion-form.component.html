@@ -1,6 +1,6 @@
 <div class="p-4 w-full" role="main">
   <div class="field">
-    <label class="block text-white font-medium mb-2" for="fromCurrency">From</label>
+    <label class="block bold font-medium mb-2" for="fromCurrency">From</label>
     <p-dropdown
       styleClass="w-full"
       [options]="symbols"
@@ -29,7 +29,7 @@
   </div>
 
   <div class="field">
-    <label class="block text-white font-medium mb-2" for="amount">Amount in {{selectedFromCurrency.code}}</label>
+    <label class="block bold font-medium mb-2" for="amount">Amount in {{selectedFromCurrency.code}}</label>
     <p-inputNumber
       class="w-full"
       styleClass="w-full"
@@ -43,7 +43,7 @@
   </div>
 
   <div class="field">
-    <label class="block text-white font-medium mb-2" for="toCurrency">To</label>
+    <label class="block bold font-medium mb-2" for="toCurrency">To</label>
     <p-dropdown
       styleClass="w-full"
       [options]="symbols"
@@ -72,7 +72,7 @@
   </div>
 
   <div class="field">
-    <label class="block text-white font-medium mb-2" for="salaryRate">Salary Rate</label>
+    <label class="block bold font-medium mb-2" for="salaryRate">Salary Rate</label>
     <p-dropdown
       styleClass="w-full"
       [options]="salaryRates"
