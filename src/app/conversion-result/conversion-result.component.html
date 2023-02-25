@@ -1,11 +1,11 @@
 <div class="m-4 flex flex-row surface-card shadow-2 border-round w-max">
   <span class="m-3 text-700 font-bold">Salary Rates</span>
   <div class="flex flex-row align-items-center">
-    <button (click)="selectedSalaryRate = 'yearly'" pButton type="button" class="salary-rate-option p-button-rounded p-button-text mr-1">Yearly</button>
-    <button (click)="selectedSalaryRate = 'monthly'" pButton type="button" class="salary-rate-option p-button-rounded p-button-text mr-1">Monthly</button>
-    <button (click)="selectedSalaryRate = 'weekly'" pButton type="button" class="salary-rate-option p-button-rounded p-button-text mr-1">Weekly</button>
-    <button (click)="selectedSalaryRate = 'daily'" pButton type="button" class="salary-rate-option p-button-rounded p-button-text mr-1">Daily</button>
-    <button (click)="selectedSalaryRate = 'hourly'" pButton type="button" class="salary-rate-option p-button-rounded p-button-text mr-1">Hourly</button>
+    <button #yearlyBtn [ngClass]="{'p-button-text': selectedSalaryRate !== 'yearly'}" (click)="selectedSalaryRate = 'yearly'" pButton type="button" class="salary-rate-option p-button-rounded mr-1">Yearly</button>
+    <button #monthlyBtn [ngClass]="{'p-button-text': selectedSalaryRate !== 'monthly'}" (click)="selectedSalaryRate = 'monthly'" pButton type="button" class="salary-rate-option p-button-rounded mr-1">Monthly</button>
+    <button #weeklyBtn [ngClass]="{'p-button-text': selectedSalaryRate !== 'weekly'}" (click)="selectedSalaryRate = 'weekly'" pButton type="button" class="salary-rate-option p-button-rounded mr-1">Weekly</button>
+    <button #dailyBtn [ngClass]="{'p-button-text': selectedSalaryRate !== 'daily'}" (click)="selectedSalaryRate = 'daily'" pButton type="button" class="salary-rate-option p-button-rounded mr-1">Daily</button>
+    <button #hourlyBtn [ngClass]="{'p-button-text': selectedSalaryRate !== 'hourly'}" (click)="selectedSalaryRate = 'hourly'" pButton type="button" class="salary-rate-option p-button-rounded mr-1">Hourly</button>
   </div>
 </div>
 

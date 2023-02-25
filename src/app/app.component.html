@@ -27,7 +27,10 @@
           </span>
         </div>
 
-        <app-salary-conversion-form (newConversionResultEvent)="newConversionResultEvent($event)"></app-salary-conversion-form>
+        <app-salary-conversion-form
+        (newConversionResultEvent)="newConversionResultEvent($event)"
+        (newSelectedSalaryRateEvent)="newSelectedSalaryRateEvent($event)">
+        </app-salary-conversion-form>
       </section>
   </div>
   <div class="hidden h-screen md:col-6 md:flex flex-column justify-content-around">
@@ -55,7 +58,12 @@
 </div>
 
 <div *ngIf="conversionResult" class="grid align-items-end">
-    <app-conversion-result class="col" id="conversion-result" [conversionResult]="conversionResult"></app-conversion-result>
+    <app-conversion-result
+    class="col"
+    id="conversion-result"
+    [conversionResult]="conversionResult"
+    [selectedSalaryRate]="selectedSalaryRate">
+    </app-conversion-result>
 
     <app-iphone-comparison
     class="col"
