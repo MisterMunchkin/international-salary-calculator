@@ -11,6 +11,7 @@ import { MessageService } from 'primeng/api';
 })
 export class AppComponent {
   conversionResult?: ConversionResult;
+  selectedSalaryRate: string = 'Yearly';
 
   constructor(
     private scroller: ViewportScroller,
@@ -20,5 +21,9 @@ export class AppComponent {
     this.conversionResult = conversionResult;
     this.changeDetector.detectChanges();
     this.scroller.scrollToAnchor("conversion-result");
+  }
+
+  newSelectedSalaryRateEvent(selectedSalaryRate: string) {
+    this.selectedSalaryRate = selectedSalaryRate;
   }
 }

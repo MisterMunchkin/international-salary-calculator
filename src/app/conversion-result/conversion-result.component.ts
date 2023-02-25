@@ -1,5 +1,5 @@
 import { getCurrencySymbol } from '@angular/common';
-import { Component, Input } from '@angular/core';
+import { Component, ElementRef, Input, ViewChild } from '@angular/core';
 import { ConversionResult } from '../interfaces/salary-rates-result';
 import { SalaryRatesData } from '../static-data/salary-rates-data';
 
@@ -11,7 +11,14 @@ import { SalaryRatesData } from '../static-data/salary-rates-data';
 export class ConversionResultComponent {
   @Input() conversionResult?: ConversionResult;
 
-  selectedSalaryRate: string = 'yearly';
+  private _selectedSalaryRate?: string;
+  @Input()
+  set selectedSalaryRate(value: string) {
+    this._selectedSalaryRate = value.toLowerCase();
+  }
+  get selectedSalaryRate() : string {
+    return this._selectedSalaryRate ?? 'yearly';
+  }
 
   currencySymbol(code: string | undefined) {
     return (code) ? getCurrencySymbol(code, "wide") : '';
