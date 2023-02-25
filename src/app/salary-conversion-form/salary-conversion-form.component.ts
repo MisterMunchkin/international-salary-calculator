@@ -19,7 +19,6 @@ export class SalaryConversionFormComponent {
   symbols: Array<Symbol> = [];
   salaryRates: Array<string> = [];
 
-  selectedSalaryRate: string = 'Yearly';
   selectedFromCurrency: Symbol = {
     description: 'United States Dollar',
     code: 'USD'
@@ -39,7 +38,12 @@ export class SalaryConversionFormComponent {
 
   @Output() newConversionResultEvent = new EventEmitter<ConversionResult>();
   conversionResult?: ConversionResult;
+
+  selectedSalaryRate: string = 'Yearly';
+  @Output() newSelectedSalaryRateEvent = new EventEmitter<string>();
+
   loadingConversion: boolean = false;
+
   constructor(
     private exchangeRateService: ExchangeRateService,
     private messageService: MessageService,
@@ -80,6 +84,7 @@ export class SalaryConversionFormComponent {
     )
     .subscribe({
       next: result => {
+        this.newSelectedSalaryRateEvent.emit(this.selectedSalaryRate);
         this.salaryResult(result);
 
         this.loadingConversion = false;
@@ -106,7 +111,7 @@ export class SalaryConversionFormComponent {
       toCurrency: JSON.parse(JSON.stringify(this.selectedToCurrency)),
       fromCurrency: JSON.parse(JSON.stringify(this.selectedFromCurrency)),
       salaryRates: allSalaryRates
-    }
+    };
 
     this.newConversionResultEvent.emit(this.conversionResult);
   }
