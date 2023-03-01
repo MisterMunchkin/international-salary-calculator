@@ -10,10 +10,15 @@
   flex-wrap: wrap;
 }
 
-.hero-background {
-  background: url('/assets/svgs/hero-section-background.svg') no-repeat center center fixed;
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
+.hero-background::before {
+  background-image: url('/assets/svgs/hero-section-background.svg');
   background-size: cover;
+  content: "";
+  height: 100%;
+  left: 0;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  will-change: transform;
+  z-index: -1;
 }
