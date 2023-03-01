@@ -15,6 +15,7 @@
   subheader="This assumes that you work 40 hours per week for 52 weeks in a year 💰">
   <span
     class="text-5xl text-primary font-bold mb-3">
+    <!-- This should be pre-calculated to avoid unecessary calls due to angular things -->
     {{currencySymbol(conversionResult?.toCurrency?.code)}} {{getSalaryRateFromKey(selectedSalaryRate).toLocaleString()}}
   </span>
 </p-card>
