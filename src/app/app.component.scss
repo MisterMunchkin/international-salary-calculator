@@ -9,3 +9,11 @@
   display: flex;
   flex-wrap: wrap;
 }
+
+.hero-background {
+  background: url('/assets/svgs/hero-section-background.svg') no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
