@@ -43,6 +43,17 @@
   </div>
 
   <div class="field">
+    <label class="block bold text-white font-medium mb-2" for="salaryRate">Salary Rate</label>
+    <p-dropdown
+      styleClass="w-full"
+      [options]="salaryRates"
+      [(ngModel)]="selectedSalaryRate"
+      inputId="salaryRate"
+      placeholder="Salary Rate">
+    </p-dropdown>
+  </div>
+
+  <div class="field">
     <label class="block bold text-white font-medium mb-2" for="toCurrency">To</label>
     <p-dropdown
       styleClass="w-full"
@@ -68,17 +79,6 @@
           <div>{{symbols.description}}</div>
         </div>
       </ng-template>
-    </p-dropdown>
-  </div>
-
-  <div class="field">
-    <label class="block bold text-white font-medium mb-2" for="salaryRate">Salary Rate</label>
-    <p-dropdown
-      styleClass="w-full"
-      [options]="salaryRates"
-      [(ngModel)]="selectedSalaryRate"
-      inputId="salaryRate"
-      placeholder="Salary Rate">
     </p-dropdown>
   </div>
 
