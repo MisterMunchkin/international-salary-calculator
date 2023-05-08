@@ -2,6 +2,7 @@ import { ChangeDetectorRef, Component } from '@angular/core';
 import { ConversionResult } from './interfaces/salary-rates-result';
 import { ViewportScroller} from '@angular/common';
 import { MessageService } from 'primeng/api';
+import { Meta } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-root',
@@ -15,7 +16,16 @@ export class AppComponent {
 
   constructor(
     private scroller: ViewportScroller,
-    private changeDetector: ChangeDetectorRef) { }
+    private changeDetector: ChangeDetectorRef,
+    private meta: Meta) {
+
+    this.meta.addTags([
+      {name: 'description', content: 'A powerful salary and currency converter'},
+      {name: 'author', content: 'Robin Dalmy'},
+      {name: 'keywords', content: 'Salary, Currency, Converter, Rate, Job, Opportunity, Offer, Remote'},
+      {name: 'robots', content: 'index, follow'}
+    ]);
+  }
 
   newConversionResultEvent(conversionResult: ConversionResult) {
     this.conversionResult = conversionResult;
